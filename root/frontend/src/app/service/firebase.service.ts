@@ -4,15 +4,17 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { createUserWithEmailAndPassword, getAuth, sendEmailVerification, sendSignInLinkToEmail, UserCredential } from "firebase/auth";
 import { MessageService } from 'primeng/api';
+import * as firebase from 'firebase/compat';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FirebaseService {
-
   isLoggedIn = false;
   invalidLogin = false;  
+  currentUID = ''
   auth = this.firebaseAuth
+  @Output() navigateOnSignedIn = new EventEmitter()
 
   constructor(public firebaseAuth : AngularFireAuth,
     private router: Router, 
@@ -24,10 +26,8 @@ export class FirebaseService {
   async signIn(email: string, password: string) {
     this.auth.signInWithEmailAndPassword(email, password)
     .then((UserCredential) => {
-      localStorage.setItem('UID', UserCredential.user?.uid!)
-
+      console.log(UserCredential.user?.uid)
       this.router.navigate(['/dashboard'])
-      const user = UserCredential.user
     }).catch(() => {
       this.invalidLogin = true
     })
@@ -68,11 +68,13 @@ export class FirebaseService {
     this.isLoggedIn = false;
   }
 
-  checkIfLoggedIn() {
-    this.auth.onAuthStateChanged((loggedIn) => {
-      if(loggedIn) {
+  checkIfLoggedIn(){
+    this.auth.onAuthStateChanged((user) => {
+      if(user) {
+        this.currentUID = user.uid
         this.isLoggedIn = true;
         console.log("logged in")
+        this.navigateOnSignedIn.emit()
       } else {
         this.isLoggedIn = false;
         console.log("logged out")

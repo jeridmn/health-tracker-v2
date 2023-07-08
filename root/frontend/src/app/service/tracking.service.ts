@@ -6,37 +6,37 @@ import { createUserWithEmailAndPassword, getAuth, sendEmailVerification, sendSig
 import { MessageService } from 'primeng/api';
 import { FoodLog } from '../models/FoodLog';
 import { nanoid } from 'nanoid';
+import { FirebaseService } from './firebase.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TrackingService {
-    uid = localStorage.getItem('UID')
-    
-
     userFoodLog: FoodLog[] = []
   
     constructor(
     private router: Router, 
     private messageService: MessageService,
-    private http: HttpClient)  { 
+    private http: HttpClient,
+    private firebaseService: FirebaseService)  { 
 
   }
 
   getFoodLog() {
-    this.userFoodLog = []
-    this.http.get(`http://localhost:3000/tracking/foodlog/history/${this.uid}`).subscribe((response: any) => {
-        for(var i = 0; i < response.length; i++) {
-            this.userFoodLog.push(new FoodLog(
-                response[i].name,
-                response[i].calories,
-                response[i].fat,
-                response[i].carbs,
-                response[i].protein,
-                response[i].created_at,
-                response[i].id
-            ))
+    const uid = this.firebaseService.currentUID
 
+    this.userFoodLog = []
+    this.http.get(`http://localhost:3000/tracking/foodlog/history/${uid}`).subscribe((response: any) => {
+      for(var i = 0; i < response.length; i++) {
+        this.userFoodLog.push(new FoodLog(
+          response[i].name,
+          response[i].calories,
+          response[i].fat,
+          response[i].carbs,
+          response[i].protein,
+          response[i].created_at,
+          response[i].id
+        ))
         }
     })
 
@@ -47,7 +47,7 @@ export class TrackingService {
     const fat = foodLog.fat
     const carbs = foodLog.carbs
     const protein = foodLog.protein
-    const uid = localStorage.getItem('UID')
+    const uid = this.firebaseService.currentUID
     const timeAdded = new Date()
     const foodLogID = nanoid(5)
     console.log(foodLogID)
@@ -71,8 +71,9 @@ export class TrackingService {
   }
 
   deleteFoodLog(foodLogID: string) {
+    console.log('function called')
     this.http.delete(`http://localhost:3000/tracking/foodlog/${foodLogID}`).subscribe({
-  next: () => {
+      next: () => {
     console.log("Food log deleted.");
     this.getFoodLog();
   },

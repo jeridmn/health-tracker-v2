@@ -2,6 +2,8 @@
 @import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
 
+
+
 html {
     background-color: #222B4D;
     height: 100%;
@@ -29,5 +31,26 @@ body {
     height: 40vh;
     width: 40vw;
     border-radius: 20px;
+}
+
+thead{
+    background-color: transparent !important;
+}
+
+th {
+    background-color: transparent !important;
+    color: white !important;
+}
+
+td {
+    background-color: transparent !important ;
+    font-size: 20px;
+    font-family: 'Montserrat';
+    font-weight: 800;
+    color: white !important;
+}
+
+tr {
+    background-color: transparent !important ;
 }
 

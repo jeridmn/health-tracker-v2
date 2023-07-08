@@ -19,6 +19,9 @@ export class LoginPageComponent {
   }
 
   ngOnInit(): void {
+    this.firebaseService.navigateOnSignedIn.subscribe(() => {
+      this.router.navigate(['dashboard'])
+    })
   }
 
  

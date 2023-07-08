@@ -13,6 +13,7 @@ export class TrackPageComponent implements OnInit{
   foodLogMethods: MenuItem[] = []
   selectedDate: Date
   currentDate = new Date()
+  quickAddSelected = true;
 
 
   constructor(private router: Router, private currentRoute: ActivatedRoute, public trackingService: TrackingService) {
@@ -20,20 +21,21 @@ export class TrackPageComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    console.log('test')
     this.trackingService.getFoodLog()
     this.foodLogMethods = [
       {
         label: 'Quick Add',
         icon: 'pi pi-pencil',
         command: (() => {
-          this.router.navigate(['quick-add'], {relativeTo: this.currentRoute})
+          this.quickAddSelected = true;
         })
       },
       {
         label: 'Search',
         icon: 'pi pi-search',
         command: (() => {
-          this.router.navigate(['search'], {relativeTo: this.currentRoute})
+          this.quickAddSelected = false;
         })
       }
     ]

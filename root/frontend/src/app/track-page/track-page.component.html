@@ -1,19 +1,20 @@
 <h1 class="page-header">Track</h1>
 <div class="tracker-body" fxLayout="column" fxLayoutGap="20px" >
     <div fxLayout="row" fxLayoutGap="20px">
-        <div class="container track-input" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px" fxFlex="50"> 
+        <div class="container track-input" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px" fxFlex="70"> 
             <label>Add Food Log</label>
             <p-tabMenu [model]="foodLogMethods"></p-tabMenu>
-            <router-outlet></router-outlet>
+            <app-quick-add *ngIf="quickAddSelected" fxFlex></app-quick-add>
         </div>
-        <div class="container track-input" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px" fxFlex="50"> 
-            <label>Add Food Log</label>
-            <p-tabMenu [model]="foodLogMethods"></p-tabMenu>
-            <router-outlet></router-outlet>
+        <div class="container track-input" fxLayout="column" fxLayoutAlign="start" fxLayoutGap="20px" fxFlex="30"> 
+            <label fxLayoutAlign="center center">Add Weight Log</label>
+            <app-weight-track fxFlex></app-weight-track>
         </div>
     </div>
     
     <div class="container track-history"  fxLayoutAlign="start center" fxLayout="column" fxLayoutGap="20px">
+        <p class="no-entries" *ngIf="trackingService.userFoodLog.length==0">Daily food log is empty</p>
+
         <label>Food Log</label>
         <div fxLayout="row" fxLayoutGap="10px">
             <button pButton class="date-navigation-buttons" (click)="onDecrementDay()">
@@ -25,7 +26,7 @@
             </button>
         </div>
         <div class="container food-log-container" fxLayout="column">
-            <p-table class="food-log-table" [value]="trackingService.userFoodLog" [scrollable]="true">
+            <p-table class="food-log-table" [value]="trackingService.userFoodLog" [scrollable]="true"  *ngIf="trackingService.userFoodLog.length!=0">
                 <ng-template pTemplate="header" let-columns>
                     <tr>
                         <th >Name</th>

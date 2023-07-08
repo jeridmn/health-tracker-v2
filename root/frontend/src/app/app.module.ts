@@ -12,6 +12,7 @@ import { MenuModule } from 'primeng/menu'
 import { MenubarModule } from 'primeng/menubar';
 import { TableModule } from 'primeng/table';
 import { CalendarModule } from 'primeng/calendar';
+import { TabViewModule } from 'primeng/tabview';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component'
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -73,7 +74,8 @@ const firebaseConfig = {
     HttpClientModule,
     CalendarModule,
     FormsModule,
-    TableModule
+    TableModule,
+    TabViewModule
   ],
   providers: [MessageService, HttpClient],
   bootstrap: [AppComponent]
