@@ -1,0 +1,13 @@
+<header class="header-container" fxLayout="row"  fxLayoutAlign="space-between">
+    <img src="../../assets/images/logo-no-background.png" height="40">
+    <div class="mobile-menu-button-container">
+        <p-menu #mobileMenu [model]="menuItems" [popup]="true"></p-menu>
+        <button pButton type="button" (click)="mobileMenu.toggle($event)">
+            <i class="pi pi-bars"></i>
+        </button>        
+    </div>
+    <div class="desktop-menu-container">
+        <p-menubar [model]="menuItems"  styleClass="align-right"></p-menubar>
+    </div>   
+</header>
+

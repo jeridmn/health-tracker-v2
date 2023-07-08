@@ -1,0 +1,71 @@
+<h1 class="page-header">Track</h1>
+<div class="tracker-body" fxLayout="column" fxLayoutGap="20px" >
+    <div fxLayout="row" fxLayoutGap="20px">
+        <div class="container track-input" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px" fxFlex="50"> 
+            <label>Add Food Log</label>
+            <p-tabMenu [model]="foodLogMethods"></p-tabMenu>
+            <router-outlet></router-outlet>
+        </div>
+        <div class="container track-input" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px" fxFlex="50"> 
+            <label>Add Food Log</label>
+            <p-tabMenu [model]="foodLogMethods"></p-tabMenu>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    
+    <div class="container track-history"  fxLayoutAlign="start center" fxLayout="column" fxLayoutGap="20px">
+        <label>Food Log</label>
+        <div fxLayout="row" fxLayoutGap="10px">
+            <button pButton class="date-navigation-buttons" (click)="onDecrementDay()">
+                <i class="pi pi-angle-left"></i>
+            </button>
+            <p-calendar [(ngModel)]="selectedDate" [touchUI]="true" #calendar></p-calendar>
+            <button pButton class="date-navigation-buttons" (click)="onIncrementDay()">
+                <i class="pi pi-angle-right"></i>
+            </button>
+        </div>
+        <div class="container food-log-container" fxLayout="column">
+            <p-table class="food-log-table" [value]="trackingService.userFoodLog" [scrollable]="true">
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th >Name</th>
+                        <th >Calories (kCal)</th>
+                        <th >Fat (g)</th>
+                        <th >Carbs (g)</th>
+                        <th >Protein (g)</th>
+                        <th >Time</th>
+                        <th ></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData>
+                    <tr>
+                        <td >
+                            {{ rowData.name}}
+                        </td>
+                        <td >
+                            {{ rowData.calories}}
+                        </td>
+                        <td >
+                            {{ rowData.fat}}
+                        </td>
+                        <td >
+                            {{ rowData.carbs}}
+                        </td>
+                        <td >
+                            {{ rowData.protein}}
+                        </td>
+                        <td >
+                            {{ rowData.time.slice(0, 10) }}
+                        </td>
+                        <td>
+                            <button pButton class="food-log-entry-delete" (click)="trackingService.deleteFoodLog(rowData.id)">
+                                <i class="pi pi-trash"></i>
+                            </button>
+                        </td>
+                        
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>

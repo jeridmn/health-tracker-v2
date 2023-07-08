@@ -1,0 +1,62 @@
+<!-- <div>
+    <h2>Sign up</h2>
+    <input type="text" #emailSignup>
+    <input type="text" #passwordSignup>
+    <button (click)="onSignup(emailSignup.value, passwordSignup.value)">Sign up</button>
+</div>
+<hr>
+<div>
+    <h2>Sign In</h2>
+    <input type="text" #email>
+    <input type="text" #password>
+    <button (click)="onSignIn(email.value, password.value)">Sign In</button>
+</div> -->
+
+<div class="login-page-container" fxLayout="row" fxLayoutAlign="center center">
+    <div class="container" fxLayout="column" fxLayoutAlign="space-between">
+        <img src="../../assets/images/logo-no-background.png" > 
+        <hr style="width: 80%">
+
+        <label fxLayoutAlign="center center">Sign In</label>
+        <form #signInForm
+        class="signin-form-container" 
+        fxLayout="column" 
+        fxLayoutGap="30px" 
+        (submit)="onSignIn()"
+        > 
+            <div fxLayout="column">
+                <label for="email">Email</label>
+                <input type="email" pInputText 
+                placeholder="Enter your email" 
+                [formControl]="signInEmail"
+                email
+                #email>
+                <label class="invalid-text" *ngIf="signInEmail.invalid && signInEmail.touched">*email is invalid</label>
+            </div>
+            <div fxLayout="column">
+                <label for="password">Password</label>
+                <input type="password" pInputText 
+                placeholder="Enter your password" 
+                [formControl]="signInPassword">
+            </div>
+            <div fxLayoutAlign="center center" fxLayout="column"> 
+            <button pButton 
+            type="button" 
+            fxLayoutAlign="center" 
+            (click)="onSignIn()"
+            [disabled]="signInEmail.pristine || signInPassword.pristine || signInEmail.invalid"
+            >Login</button> 
+            <label class="invalid-text" *ngIf="this.firebaseService.invalidLogin">*email or password is incorrect</label>
+            </div>
+            
+        </form>
+
+        <hr style="width: 80%">
+
+        <a fxLayoutAlign="center end" class="create-account-link" (click)="goToCreateAccount()">New to HealthTracker?</a>
+
+        <a fxLayoutAlign="center end" class="forgot-password-link">Forgot your password?</a>
+    </div>
+    
+
+</div>

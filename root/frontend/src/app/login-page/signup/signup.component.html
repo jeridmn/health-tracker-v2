@@ -1,0 +1,47 @@
+
+<div class="login-page-container" fxLayout="row" fxLayoutAlign="center center">
+    <div class="container" fxLayout="column" fxLayoutAlign="space-between">
+        <img src="../../assets/images/logo-no-background.png" > 
+        <hr style="width: 80%">
+
+        <label fxLayoutAlign="center center">Create Account</label>
+        <form #signInForm
+        class="signin-form-container" 
+        fxLayout="column" 
+        fxLayoutGap="30px" 
+        (submit)="onSignup()"
+        > 
+            <div fxLayout="column">
+                <label for="email">Email</label>
+                <input type="email" pInputText 
+                placeholder="Enter your email" 
+                [formControl]="signUpEmail"
+                email
+                #email>
+                <label class="invalid-text" *ngIf="signUpEmail.invalid && signUpEmail.touched">*email is invalid</label>
+            </div>
+            <div fxLayout="column">
+                <label for="password">Password</label>
+                <input type="password" pInputText 
+                placeholder="Enter your password" 
+                [formControl]="signUpPassword">
+            </div>
+            <div fxLayoutAlign="center center" fxLayout="column"> 
+            <button pButton 
+            type="button" 
+            fxLayoutAlign="center" 
+            (click)="onSignup()"
+            [disabled]="signUpEmail.pristine || signUpPassword.pristine || signUpEmail.invalid"
+            >Create Account</button> 
+            <label class="invalid-text" *ngIf="this.firebaseService.invalidLogin">*email or password is incorrect</label>
+            </div>
+            
+        </form>
+
+        <hr style="width: 80%">
+
+        <p fxLayoutAlign="center end" class="login-link" (click)="goToLogin()">Already have an account?</p>
+    </div>
+    
+
+</div>

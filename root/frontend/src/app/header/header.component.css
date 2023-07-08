@@ -1,0 +1,53 @@
+@media only screen and (min-width: 960px) {
+    .mobile-menu-button-container{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 960px) {
+    .desktop-menu-container {
+        display: none;
+    }
+}
+
+.header-container {
+    background-color: #08162e;
+    height: 10vh;
+    width: 100%;
+    padding: 20px;
+}
+
+img {
+    max-width: 80%;
+    object-fit: contain;
+    align-self: center;
+}
+
+:host ::ng-deep .p-button{
+    width: 15vw;
+    height: 7vh;
+    align-self: center;
+    justify-content: center;
+    background-color: transparent;
+    color: white;
+    border-color: white;
+}
+
+#menuButtonIcon {
+    justify-self: center;
+    font-size: 250%;
+}
+
+i {
+    font-size: xx-large;
+}
+
+.desktop-menu-container {
+    align-self: center;
+}
+
+
+
+
+
+

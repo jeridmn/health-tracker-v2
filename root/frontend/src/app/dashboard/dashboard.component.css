@@ -1,0 +1,23 @@
+.dashboard-body {
+    padding-left: 20px;
+    padding-right: 20px
+}
+
+.container.weight {
+    height: 50vh;
+    width: 100%;
+}
+
+.container2 {
+    background-color: #08162e;
+    height: 40vh;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.container3 {
+    background-color: #08162e;
+    height: 40vh;
+    width: 100%;
+    border-radius: 20px;
+}

@@ -1,0 +1,58 @@
+.login-page-container {
+    width: 100vw;
+    height: 100vh;
+}
+
+.container {
+    width: 500px;
+    height: 60vh;
+    padding: 20px;
+}
+
+img {
+    max-width: 80%;
+    object-fit: contain;
+    align-self: center;
+}
+
+label {
+    color: white;
+    font-size: 25px;
+    font-family: 'Montserrat';
+    font-weight: bold;
+}   
+
+.signin-form-container {
+    margin-left: 40px;
+    margin-right: 40px
+}
+
+button {
+    width: 100%;
+    font-family: 'Montserrat';
+    font-weight: 600;
+    font-size: large;
+
+}
+
+
+.invalid-text {
+    font-size: medium;
+    color: red;
+    margin-top: 10px;
+}
+
+.create-account-link {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: 'Montserrat';
+
+    
+}
+
+.forgot-password-link {
+    color: white;
+    font-size: 15px;
+    font-family: 'Montserrat';
+}

@@ -1,0 +1,57 @@
+<div class="container" fxLayoutAlign="center center" fxLayout="column">
+    <form #quickAddForm
+    fxLayout="column" 
+    fxLayoutGap="20px" 
+    fxLayoutAlign="center center" 
+    class="quick-add-form" 
+    (submit)="onSubmit()">
+    <label>Manual food log entry</label>
+        
+        <div class="p-inputgroup">
+            <input type="text" 
+            pInputText 
+            placeholder="Name"
+            [formControl]="logName" 
+            >
+        </div>
+        <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">Calories</span>
+            <input 
+            type="number" 
+            pInputText placeholder="0cal" 
+            [formControl]="logCalories">
+        </div>
+        <div  fxLayout="row" fxLayoutGap="10px">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon">Carbs</span>
+                <input 
+                type="number" 
+                pInputText 
+                placeholder="0g"
+                [formControl]="logFat">
+            </div>
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon">Fat</span>
+                <input 
+                type="number" 
+                pInputText 
+                placeholder="0g"
+                [formControl]="logCarbs">
+            </div>
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon">Protein</span>
+                <input 
+                type="number" 
+                pInputText 
+                placeholder="0g"
+                [formControl]="logProtein">
+            </div>
+        </div>
+        <button pButton type="button"  (click)="onAdd()"> 
+            <div fxLayout="row" fxLayoutGap="5px">  
+                <label>Add</label>
+                <i class="pi pi-pencil"></i>
+            </div>
+        </button> 
+    </form>
+</div>

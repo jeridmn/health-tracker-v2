@@ -1,0 +1,33 @@
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+
+html {
+    background-color: #222B4D;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.align-right .p-menubar-root-list>li:last-child .p-submenu-list {
+    right: 0;
+}
+
+.page-header {
+    margin: 20px;
+    color: white;
+    font-family: 'Montserrat';
+    font-weight: 800;
+    font-size: 250%;
+}
+
+.container {
+    background-color: #08162e;
+    height: 40vh;
+    width: 40vw;
+    border-radius: 20px;
+}
+
