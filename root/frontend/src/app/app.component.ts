@@ -13,7 +13,7 @@ export class AppComponent implements OnInit{
   title = 'health-tracker';
 
   constructor(public firebaseService: FirebaseService, private router: Router, private trackingService: TrackingService) {
-
+    
   }
 
   ngOnInit(): void {

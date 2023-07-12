@@ -13,11 +13,7 @@ const routes: Routes = [
   {path: 'login', component: LoginPageComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'dashboard', component: DashboardComponent},
-  {path: 'tracking', component: TrackPageComponent, data: {animation: 'openClosePage'},
-  children: [
-    {path: 'quick-add', component: QuickAddComponent},
-    {path: 'search', component: SearchComponent}
-  ]},
+  {path: 'tracking', component: TrackPageComponent},
   {path: '**', component: LoginPageComponent},
 
 

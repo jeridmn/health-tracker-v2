@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { FoodLog } from '../models/FoodLog';
+import { LocalStorageService } from '../service/local-storage.service';
 import { TrackingService } from '../service/tracking.service';
 
 
@@ -10,19 +12,22 @@ import { TrackingService } from '../service/tracking.service';
   styleUrls: ['./track-page.component.css']
 })
 export class TrackPageComponent implements OnInit{
+[x: string]: any; 
   foodLogMethods: MenuItem[] = []
   selectedDate: Date
   currentDate = new Date()
   quickAddSelected = true;
 
-
-  constructor(private router: Router, private currentRoute: ActivatedRoute, public trackingService: TrackingService) {
+  constructor(
+    private router: Router, 
+    private currentRoute: ActivatedRoute, 
+    public trackingService: TrackingService,
+    public localStorageService: LocalStorageService,) {
     
   }
 
   ngOnInit(): void {
-    console.log('test')
-    this.trackingService.getFoodLog()
+    console.log(JSON.parse( localStorage.getItem('foodLogs'))[0].time.toISOString )
     this.foodLogMethods = [
       {
         label: 'Quick Add',
@@ -39,6 +44,7 @@ export class TrackPageComponent implements OnInit{
         })
       }
     ]
+
   }
 
   onIncrementDay() {

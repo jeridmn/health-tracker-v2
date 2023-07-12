@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { nanoid } from 'nanoid';
 import { FoodLog } from 'src/app/models/FoodLog';
+import { WeightLog } from 'src/app/models/WeightLog';
+import { LocalStorageService } from 'src/app/service/local-storage.service';
 import { TrackingService } from 'src/app/service/tracking.service';
 
 @Component({
@@ -9,32 +12,29 @@ import { TrackingService } from 'src/app/service/tracking.service';
   styleUrls: ['./weight-track.component.css']
 })
 export class WeightTrackComponent {
-  foodLog: FoodLog
-  logName = new FormControl('')
-  logCalories = new FormControl('')
-  logFat = new FormControl('')
-  logCarbs = new FormControl('')
-  logProtein = new FormControl('')
-  date = new Date()
+  weightLog: WeightLog
+  logWeight = new FormControl('')
+  dateOptions = {
+    month: "long",
+    day: "numeric",
+    year: "numeric"
+  }
   
-  constructor(private trackingService: TrackingService) {
+  constructor(public trackingService: TrackingService, public localStorageService: LocalStorageService) {
 
   }
 
   ngOnInit(): void {
   }
-  
-  onSubmit() {
-    
-  }
 
   onAdd() {
-    this.trackingService.addFoodLog(new FoodLog(this.logName.value,
-      +this.logCalories.value,
-      +this.logFat.value,
-      +this.logCarbs.value, 
-      +this.logProtein.value,
-       null,
-       null))
+    const weightID = nanoid(5)  
+    this.trackingService.addWeightLog(new WeightLog(
+      +this.logWeight.value, 
+      weightID, 
+      null
+))
   }
+
+ 
 }

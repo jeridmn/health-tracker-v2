@@ -5,6 +5,7 @@
             <label>Add Food Log</label>
             <p-tabMenu [model]="foodLogMethods"></p-tabMenu>
             <app-quick-add *ngIf="quickAddSelected" fxFlex></app-quick-add>
+            <app-search *ngIf="!quickAddSelected" fxFlex></app-search>
         </div>
         <div class="container track-input" fxLayout="column" fxLayoutAlign="start" fxLayoutGap="20px" fxFlex="30"> 
             <label fxLayoutAlign="center center">Add Weight Log</label>
@@ -13,7 +14,7 @@
     </div>
     
     <div class="container track-history"  fxLayoutAlign="start center" fxLayout="column" fxLayoutGap="20px">
-        <p class="no-entries" *ngIf="trackingService.userFoodLog.length==0">Daily food log is empty</p>
+        <p class="no-entries" *ngIf="localStorageService.getData('foodLogs').length==0">Daily food log is empty</p>
 
         <label>Food Log</label>
         <div fxLayout="row" fxLayoutGap="10px">
@@ -26,7 +27,7 @@
             </button>
         </div>
         <div class="container food-log-container" fxLayout="column">
-            <p-table class="food-log-table" [value]="trackingService.userFoodLog" [scrollable]="true"  *ngIf="trackingService.userFoodLog.length!=0">
+            <p-table class="food-log-table" [value]="localStorageService.getData('foodLogs')" [scrollable]="true"  scrollHeight="550px" *ngIf="localStorageService.getData('foodLogs').length!=0">
                 <ng-template pTemplate="header" let-columns>
                     <tr>
                         <th >Name</th>
@@ -56,7 +57,7 @@
                             {{ rowData.protein}}
                         </td>
                         <td >
-                            {{ rowData.time.slice(0, 10) }}
+                            {{  rowData.time | date: 'h:mm a' }}
                         </td>
                         <td>
                             <button pButton class="food-log-entry-delete" (click)="trackingService.deleteFoodLog(rowData.id)">

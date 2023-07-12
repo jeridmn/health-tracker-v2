@@ -15,7 +15,7 @@ export class QuickAddComponent implements OnInit{
   logFat = new FormControl('')
   logCarbs = new FormControl('')
   logProtein = new FormControl('')
-  date = new Date()
+  
   
   constructor(private trackingService: TrackingService) {
 

@@ -27,13 +27,21 @@ label {
 p {
 
     position: absolute;
-    top: 40%;
-    left: 15%;
+    top: 37%;
+    left: 12%;
     color: white;
     font-size: large;
     font-family: 'Montserrat';
     font-weight: bold;
 
 }
+
+.weight-log-entry-delete {
+    background-color: #ff4242 !important;
+    border-width: 0;
+    
+}
+
+
 
 

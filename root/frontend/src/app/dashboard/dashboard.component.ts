@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../service/firebase.service';
+import { TrackingService } from '../service/tracking.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,12 +9,15 @@ import { FirebaseService } from '../service/firebase.service';
 })
 export class DashboardComponent implements OnInit{
 
-  constructor(private firebaseService: FirebaseService){
+  constructor(private firebaseService: FirebaseService,
+    private trackingService: TrackingService){
     
   } 
 
   ngOnInit(): void {
     console.log(this.firebaseService.isLoggedIn)
+    this.trackingService.getFoodLog() 
+    this.trackingService.getWeightLog() 
     
   }
 
