@@ -12,7 +12,7 @@ import { TrackingService } from 'src/app/service/tracking.service';
   styleUrls: ['./weight-track.component.css']
 })
 export class WeightTrackComponent {
-  weightLog: WeightLog
+  weightLog: WeightLog[]
   logWeight = new FormControl('')
   dateOptions = {
     month: "long",
@@ -25,6 +25,10 @@ export class WeightTrackComponent {
   }
 
   ngOnInit(): void {
+    this.weightLog = this.localStorageService.getData('weightLogs')
+    this.trackingService.logsChanged.subscribe(() => {
+      this.weightLog = this.localStorageService.getData('weightLogs')
+    })
   }
 
   onAdd() {

@@ -7,10 +7,10 @@
    
     fxFlex>
     <p-table class="table" 
-    *ngIf="localStorageService.getData('weightLogs').length != 0"
-    [value]="localStorageService.getData('weightLogs')" 
+    
+    [value]="weightLog" 
     [scrollable]="true" 
-    scrollHeight="250px" 
+    scrollHeight="400px" 
     fxFlex>
         <ng-template pTemplate="header" let-columns>
             <tr>

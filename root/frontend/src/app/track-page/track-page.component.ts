@@ -12,11 +12,14 @@ import { TrackingService } from '../service/tracking.service';
   styleUrls: ['./track-page.component.css']
 })
 export class TrackPageComponent implements OnInit{
-[x: string]: any; 
   foodLogMethods: MenuItem[] = []
   selectedDate: Date
   currentDate = new Date()
   quickAddSelected = true;
+  foodLog: FoodLog[] = []
+  filters = {
+    name: 'Quick Add'
+  }
 
   constructor(
     private router: Router, 
@@ -27,7 +30,12 @@ export class TrackPageComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    console.log(JSON.parse( localStorage.getItem('foodLogs'))[0].time.toISOString )
+    this.selectedDate = new Date()
+    this.foodLog = this.localStorageService.getData('foodLogs')
+    this.trackingService.logsChanged.subscribe(() => {
+      this.foodLog = this.localStorageService.getData('foodLogs')
+
+    })
     this.foodLogMethods = [
       {
         label: 'Quick Add',
@@ -56,6 +64,14 @@ export class TrackPageComponent implements OnInit{
   onDecrementDay() {
     this.selectedDate.setDate(this.selectedDate.getDate() - 1)
     this.selectedDate = new Date(this.selectedDate)
+  }
+
+  test(thing: any) {
+    console.log(this.selectedDate.getDate())
+  }
+
+  getLogDate(date: string) {
+    return new Date(date).getDate()
   }
   
 

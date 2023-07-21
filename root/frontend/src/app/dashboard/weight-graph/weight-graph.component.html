@@ -1,0 +1,10 @@
+<div class="chart-container" fxLayout="column" fxLayoutGap="10px">
+    <div fxLayoutAlign="space-between" fxFlex="10"> 
+        <label>Calorie Intake</label>
+         <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+            <label>Select Date:</label>
+            <p-calendar class="date-select" [(ngModel)]="dateRange" [touchUI]="true" (ngModelChange)="onDateChange($event)" selectionMode="range" [readonlyInput]="true" #calendar></p-calendar>
+        </div>
+    </div>
+    <canvas id="myChart" class="chart" fxFlex="90"></canvas>
+</div>

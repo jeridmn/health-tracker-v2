@@ -15,7 +15,7 @@ export class FoodDbSearchService {
   getSearchResults(searchString: string) {
     this.http.get(`https://api.nal.usda.gov/fdc/v1/foods/search?api_key=${this.API_KEY}&query=${searchString}`).subscribe(
       (response:any) => {
-       
+        this.searchResults = []
         let results = response.foods
         console.log(response)
         results.forEach( food => {

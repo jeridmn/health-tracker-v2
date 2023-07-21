@@ -16,6 +16,7 @@ import { LocalStorageService } from './local-storage.service';
 export class TrackingService {
     userFoodLog: FoodLog[] = []
     userWeightLog: WeightLog[] = []
+    @Output() logsChanged = new EventEmitter()
   
     constructor(
     private router: Router, 
@@ -43,6 +44,8 @@ export class TrackingService {
         ))
         }
         this.localStorageService.setData('foodLogs', this.userFoodLog)
+        this.logsChanged.emit()
+
     })
 
   }
@@ -53,7 +56,7 @@ export class TrackingService {
     const carbs = foodLog.carbs
     const protein = foodLog.protein
     const uid = this.firebaseService.currentUID
-    const timeAdded = new Date()
+    const timeAdded = foodLog.time
     const foodLogID = nanoid(5)
     console.log(foodLogID)
     var name = ''
@@ -66,6 +69,7 @@ export class TrackingService {
     this.http.post('http://localhost:3000/tracking/foodlog', {calories, fat, carbs, protein, uid, timeAdded, name, foodLogID}).subscribe({
       next: () => {
         console.log('Food added to database')
+        this.messageService.add({ severity: 'success', summary: 'Submitted', detail: 'Food log has been added to your diary' });
         this.getFoodLog()
       }
     })
@@ -74,7 +78,8 @@ export class TrackingService {
   deleteFoodLog(foodLogID: string) {
     this.http.delete(`http://localhost:3000/tracking/foodlog/${foodLogID}`).subscribe({
       next: () => {
-      console.log("Food log deleted.");
+        console.log("Food log deleted.");
+        this.messageService.add({ severity: 'warn', summary: 'Deleted', detail: 'Food log has been deleted from your diary' });
         this.getFoodLog();
        },
       error: (error) => {
@@ -111,13 +116,14 @@ export class TrackingService {
         ))
       }
       this.localStorageService.setData('weightLogs', this.userWeightLog)
+      this.logsChanged.emit()
     })
   }
 
   deleteWeightLog(weightLogID: string) {
     this.http.delete(`http://localhost:3000/tracking/weights/delete-weight/${weightLogID}`).subscribe({
       next: () => {
-      console.log("Weight log deleted.");
+        console.log("Weight log deleted.");
         this.getWeightLog();
        },
       error: (error) => {

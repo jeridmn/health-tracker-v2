@@ -42,6 +42,27 @@ p {
     
 }
 
+thead{
+    background-color: transparent !important;
+}
+
+th {
+    background-color: #152045 !important;
+    color: white !important;
+}
+
+td {
+    background-color: transparent !important ;
+    font-size: 20px;
+    font-family: 'Montserrat';
+    font-weight: 800;
+    color: white !important;
+}
+
+tr {
+    background-color: transparent !important ;
+}
+
 
 
 

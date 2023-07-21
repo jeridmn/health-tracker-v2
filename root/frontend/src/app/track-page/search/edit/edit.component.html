@@ -1,0 +1,28 @@
+<div>
+    <div fxLayout="column" fxLayoutGap="20px">
+        <label class="food-label">{{ selectedResult.name }}</label>
+        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+            <label>Grams:</label>
+            <p-inputNumber class="food-gram-input" [(ngModel)]="grams" [showButtons]="true" > </p-inputNumber>
+            <label>Quantity:</label>
+            <p-inputNumber class="food-gram-input" [(ngModel)]="quantity" [showButtons]="true" > </p-inputNumber>
+        </div>
+        <p-divider></p-divider>
+    </div>
+    <div fxLayout="column" fxLayoutGap="5px">
+        <label class="macro-header">Macros:</label>
+        <div fxLayout="row" class="macros" fxLayoutAlign="start center" fxLayoutGap="30px">
+            Calories: <p> {{ ((selectedResult.calories/100)*grams)*quantity | number:'1.0-0'}}</p>
+            Fat: <p> {{ ((selectedResult.fat/100)*grams)*quantity | number:'1.0-0'}}g</p>
+            Carbs: <p> {{ ((selectedResult.carbs/100)*grams)*quantity | number:'1.0-0'}}g</p>
+           Protein: <p> {{ ((selectedResult.protein/100)*grams)*quantity | number:'1.0-0'}}g</p>
+           <button pButton class="food-edit-submit" fxFlex (click)="addFood()"> 
+            <div fxLayout="row" fxLayoutGap="5px">  
+                <label >Add</label>
+                <i class="pi pi-pencil"></i>
+            </div>
+        </button> 
+        </div>
+    </div>
+   
+</div>

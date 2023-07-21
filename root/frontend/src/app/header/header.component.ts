@@ -40,14 +40,6 @@ export class HeaderComponent implements OnInit{
         icon: 'pi pi-cog',
         items: [
           {
-            label: 'Health',
-            icon: 'pi pi-heart-fill'
-          },
-          {
-            label: 'User',
-            icon: 'pi pi-user-edit'
-          },
-          {
             label: 'Logout',
             icon: 'pi pi-sign-out',
             command: (() => {

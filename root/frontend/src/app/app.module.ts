@@ -12,6 +12,8 @@ import { MenuModule } from 'primeng/menu'
 import { MenubarModule } from 'primeng/menubar';
 import { TableModule } from 'primeng/table';
 import { CalendarModule } from 'primeng/calendar';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { DividerModule } from 'primeng/divider';
 import { TabViewModule } from 'primeng/tabview';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component'
@@ -22,6 +24,7 @@ import { QuickAddComponent } from './track-page/quick-add/quick-add.component';
 import { SearchComponent } from './track-page/search/search.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
+import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { RadioButtonModule } from 'primeng/radiobutton';
@@ -32,6 +35,9 @@ import { SignupComponent } from './login-page/signup/signup.component';
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { WeightTrackComponent } from './track-page/weight-track/weight-track.component';
+import { EditComponent } from './track-page/search/edit/edit.component';
+import { WeightGraphComponent } from './dashboard/weight-graph/weight-graph.component';
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyBVikIhnSHdLZykiAfzdGnbrGb4woLFjLY",
@@ -54,7 +60,9 @@ const firebaseConfig = {
     SearchComponent,
     LoginPageComponent,
     SignupComponent,
-    WeightTrackComponent
+    WeightTrackComponent,
+    EditComponent,
+    WeightGraphComponent  
   ],
   imports: [
     BrowserModule,
@@ -75,7 +83,10 @@ const firebaseConfig = {
     CalendarModule,
     FormsModule,
     TableModule,
-    TabViewModule
+    TabViewModule,
+    DialogModule,
+    InputNumberModule,
+    DividerModule
   ],
   providers: [MessageService, HttpClient],
   bootstrap: [AppComponent]

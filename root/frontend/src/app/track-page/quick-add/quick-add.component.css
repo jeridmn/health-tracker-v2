@@ -25,3 +25,23 @@ label {
     font-family: 'Montserrat';
     font-weight: bold;
 }
+
+:host ::ng-deep input {
+    background-color:  #08162e;
+    border-color: transparent;
+    color: white !important
+
+}
+
+
+:host ::ng-deep .p-inputgroup-addon {
+    background-color:  #262f3f;
+    border-color: transparent ;
+    color: white;
+    width: 80px;
+}
+
+.add-log-button {
+    width: 200px;
+}
+

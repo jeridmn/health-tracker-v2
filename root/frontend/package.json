@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^15.1.0",
     "@angular/platform-browser-dynamic": "^15.1.0",
     "@angular/router": "^15.1.0",
+    "chart.js": "^4.3.0",
     "firebase": "^9.23.0",
     "firebaseui": "^6.0.2",
     "nanoid": "^4.0.2",

@@ -1,0 +1,19 @@
+.chart-container {
+    height: 100%;
+    padding: 20px;
+}
+
+label {
+    font-size: 25px;
+    font-family: 'Montserrat';
+    font-weight: 600;
+    color: white;
+}
+
+:host ::ng-deep input {
+    width: 15vw !important;
+    background-color: rgb(21, 41, 77);
+    color: white;
+    font-weight: 700;
+    border-color: transparent;
+}

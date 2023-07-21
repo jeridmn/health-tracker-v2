@@ -2,17 +2,17 @@
     <form #quickAddForm
     fxLayout="column" 
     fxLayoutGap="20px" 
-    fxLayoutAlign="center center" 
     class="quick-add-form" 
     (submit)="onSubmit()">
     <label>Manual food log entry</label>
-        
-        <div class="p-inputgroup">
-            <input type="text" 
-            pInputText 
-            placeholder="Name"
-            [formControl]="logName" 
-            >
+        <div fxLayout="row" fxLayoutGap="20px" >
+                <input type="text" 
+                pInputText 
+                placeholder="Name"
+                [formControl]="logName" 
+                fxFlex="77">
+            <p-calendar class="log-date" [ngModelOptions]="{standalone: true}" [(ngModel)]="logDate" #calendar placeholder="Date" fxFlex="23"></p-calendar>
+
         </div>
         <div class="p-inputgroup">
             <span class="p-inputgroup-addon">Calories</span>
@@ -21,7 +21,7 @@
             pInputText placeholder="0cal" 
             [formControl]="logCalories">
         </div>
-        <div  fxLayout="row" fxLayoutGap="10px">
+        <div  fxLayout="row" fxLayoutGap="20px">
             <div class="p-inputgroup">
                 <span class="p-inputgroup-addon">Carbs</span>
                 <input 
@@ -47,11 +47,14 @@
                 [formControl]="logProtein">
             </div>
         </div>
-        <button pButton type="button"  (click)="onAdd()"> 
-            <div fxLayout="row" fxLayoutGap="5px">  
-                <label>Add</label>
-                <i class="pi pi-pencil"></i>
-            </div>
-        </button> 
+        <div fxLayoutAlign="center center">
+            <button class="add-log-button" pButton type="button"  (click)="onAdd()"> 
+                <div fxLayout="row" fxLayoutGap="5px">  
+                    <label>Add</label>
+                    <i class="pi pi-pencil"></i>
+                </div>
+            </button> 
+        </div>
+        
     </form>
 </div>

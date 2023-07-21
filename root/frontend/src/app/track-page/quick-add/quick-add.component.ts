@@ -15,6 +15,7 @@ export class QuickAddComponent implements OnInit{
   logFat = new FormControl('')
   logCarbs = new FormControl('')
   logProtein = new FormControl('')
+  logDate = new Date()
   
   
   constructor(private trackingService: TrackingService) {
@@ -34,7 +35,7 @@ export class QuickAddComponent implements OnInit{
       +this.logFat.value,
       +this.logCarbs.value, 
       +this.logProtein.value,
-       null,
+      this.logDate,
        null))
   }
 }
